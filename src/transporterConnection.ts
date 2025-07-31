@@ -1,5 +1,5 @@
 import nodemailer, { Transporter } from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import SMTPTransport, { captureRejectionSymbol } from 'nodemailer/lib/smtp-transport';
 import { ImailOptions } from './Esp.interface';
 import { espClientConfig } from './EspCLient.configs.js';
 
@@ -9,7 +9,7 @@ export class EspClientConnection {
 
   private constructor() {
     console.log(espClientConfig)
-    this.transporter = nodemailer.createTransport(espClientConfig);
+    this.transporter = nodemailer.createTransport(espClientConfig,{logger:true});
   }
 
   static getInstance(): EspClientConnection {

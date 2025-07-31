@@ -5,7 +5,7 @@ export class EspClientConnection {
     transporter;
     constructor() {
         console.log(espClientConfig);
-        this.transporter = nodemailer.createTransport(espClientConfig);
+        this.transporter = nodemailer.createTransport(espClientConfig, { logger: true });
     }
     static getInstance() {
         if (!EspClientConnection.instance) {
